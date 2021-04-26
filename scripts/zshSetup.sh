@@ -86,7 +86,7 @@ zshSetup() {
 		echo 'POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="red"' >>~/.zshrc &&
 		echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >>~/.zshrc &&
-		echo 'alias aks="kubectl config use-context cronerappaks"' >>~/.zshrc &&
+		echo 'alias aks="kubectl config use-context $(basename $PWD)aks"' >>~/.zshrc &&
 		echo 'alias dev="kubectl config use-context $(basename $PWD) && source api-v2/.venv/bin/activate"' >>~/.zshrc &&
 		echo 'alias ska="dev && skaffold dev --port-forward -n dev"' >>~/.zshrc
 	echo "${GREEN}Done.${NC}"
