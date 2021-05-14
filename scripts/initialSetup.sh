@@ -62,6 +62,7 @@ else
 	echo "  - Install Minikube"
 	echo "  - Install Skaffold"
 	echo "  - Install Helm"
+	echo "  - Install PostgreSQL"
 	echo "  - Install Oh My Zsh"
 	echo "You will need to run the zshSetup.sh script after this script runs to finish setup."
 	printf "Press [y/Y] to continue or ${RED}CTRL+C to cancel${BLUE}: ${NC} "
@@ -164,6 +165,12 @@ macSetup() {
 	# Install Helm
 	echo "${GREEN}Installing helm...${NC}"
 	brew install helm
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install postgres
+	echo "${GREEN}Installing PostgreSQL...${NC}"
+	brew install postgresql
 	echo "${GREEN}Done.${NC}"
 	echo ""
 
