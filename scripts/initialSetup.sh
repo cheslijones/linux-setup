@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # determine the OS, distro and shell
 if grep -q icrosoft /proc/version; then
@@ -16,43 +16,166 @@ BLUE="\033[0;34m"
 NC="\033[0m"
 PROMPT_EOL_MARK=""
 
-echo ""
-echo "${BLUE}Running this script will do the following to your shell: "
-echo "  - Update and upgrade OS dependencies"
-echo "  - Install Azure CLI"
-echo "  - Install pip and virtualenv"
-echo "  - Install zsh"
-echo "  - Install nvm"
-echo "  - Install Docker"
-echo "  - Install Docker"
-echo "  - Install Kubernetes"
-echo "  - Install Minikube"
-echo "  - Install Skaffold"
-echo "  - Install Helm"
-echo "  - Install Oh My Zsh"
-echo "You will need to run the zshSetup.sh script after this script runs to finish setup."
-printf "Press [y/Y] to continue or ${RED}CTRL+C to cancel${BLUE}: ${NC} "
-read -k userResponse
-echo "\n"
-
-case $userResponse in
-[yY])
-	if [[ $os != "mac" ]]; then
+if [[ $os != "mac" ]]; then
+	echo ""
+	echo "${BLUE}Running this script will do the following to your shell: "
+	echo "  - Update and upgrade OS dependencies"
+	echo "  - Install Azure CLI"
+	echo "  - Install pip and virtualenv"
+	echo "  - Install zsh"
+	echo "  - Install nvm"
+	echo "  - Install Docker"
+	echo "  - Install Kubernetes"
+	echo "  - Install Minikube"
+	echo "  - Install Skaffold"
+	echo "  - Install Helm"
+	echo "  - Install Oh My Zsh"
+	echo "You will need to run the zshSetup.sh script after this script runs to finish setup."
+	printf "Press [y/Y] to continue or ${RED}CTRL+C to cancel${BLUE}: ${NC} "
+	read -k userResponse
+	echo "\n"
+	case $userResponse in
+	[yY])
 		linuxSetup
-		echo "${RED}This script is done running.${NC}"
-		echo "${RED}Run zshSetup.sh to continue setup.${NC}"
+		echo "${GREEN}This script is done running.${NC}"
+		echo "${GREEN}Run zshSetup.sh to continue setup.${NC}"
 		echo ""
-	else
-		echo "${RED}This shell is not currently supported.${NC}"
-	fi
-	;;
-*)
-	echo "${RED}This is not a valid option.${NC}"
-	;;
-esac
+		;;
+	*)
+		echo "${RED}This is not a valid option.${NC}"
+		;;
+	esac
+else
+	echo ""
+	echo "${BLUE}Running this script will do the following to your shell: "
+	echo "  - Install Homebrew"
+	echo "  - Install iTerm2"
+	echo "  - Install Postman"
+	echo "  - Install pgAdmin4"
+	echo "  - Install VS Code"
+	echo "  - Install Azure Storage Explorer"
+	echo "  - Install Azure CLI"
+	echo "  - Install virtualenv"
+	echo "  - Install nvm"
+	echo "  - Install Docker"
+	echo "  - Install Kubernetes"
+	echo "  - Install Minikube"
+	echo "  - Install Skaffold"
+	echo "  - Install Helm"
+	echo "  - Install Oh My Zsh"
+	echo "You will need to run the zshSetup.sh script after this script runs to finish setup."
+	printf "Press [y/Y] to continue or ${RED}CTRL+C to cancel${BLUE}: ${NC} "
+	read -k userResponse
+	echo "\n"
+	case $userResponse in
+	[yY])
+		macSetup
+		echo "${GREEN}This script is done running.${NC}"
+		echo "${GREEN}Run zshSetup.sh to continue setup.${NC}"
+		echo ""
+		;;
+	*)
+		echo "${RED}This is not a valid option.${NC}"
+		;;
+	esac
+fi
+
+macSetup() {
+	# Installing homebrew
+	echo "${GREEN}Installing homebrew...${NC}"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>/Users/cheslijones/.zprofile
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install iTerm2
+	echo "${GREEN}Installing iTerm2...${NC}"
+	brew install --cask iterm2
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install Postman
+	echo "${GREEN}Installing Postman...${NC}"
+	brew install --cask postman
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install pgAdmin
+	echo "${GREEN}Installing pgAdmin...${NC}"
+	brew install --cask pgadmin4
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install VS Code
+	echo "${GREEN}Installing VS Code...${NC}"
+	brew install --cask visual-studio-code
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install Azure Storage Explorer
+	echo "${GREEN}Installing Azure Storage Explorer...${NC}"
+	brew install --cask microsoft-azure-storage-explorer
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install az cli
+	echo "${GREEN}Installing Azure CLI...${NC}"
+	brew install azure-cli
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install virtualenv
+	echo "${GREEN}Installing virtualenv...${NC}"
+	sudo pip3 install virtualenv
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install nvm
+	echo "${GREEN}Installing nvm...${NC}"
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install docker
+	echo "${GREEN}Installing docker...${NC}"
+	brew install --cask docker
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install docker
+	echo "${GREEN}Installing kubectl...${NC}"
+	brew install kubectl
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install Minikube
+	echo "${GREEN}Installing minikube...${NC}"
+	brew install minikube
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install Skaffold
+	echo "${GREEN}Installing skaffold...${NC}"
+	brew install skaffold
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install Helm
+	echo "${GREEN}Installing helm...${NC}"
+	brew install helm
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+	# Install oh-my-zsh
+	echo "${GREEN}Installing Oh My Zsh...${NC}"
+	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	echo "${GREEN}Done.${NC}"
+	echo ""
+
+}
 
 linuxSetup() {
-
 	# Make sure in user's root directory
 	echo "${GREEN}Changing to user's root directory...${NC}"
 	cd ~/
@@ -149,7 +272,7 @@ linuxSetup() {
 	echo ""
 
 	# Install Helm
-	echo "${GREEN}Installing skaffold...${NC}"
+	echo "${GREEN}Installing helm...${NC}"
 	curl https://baltocdn.com/helm/signing.asc | sudo apt-key add - &&
 		sudo apt-get install apt-transport-https --yes &&
 		echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list &&
@@ -158,7 +281,7 @@ linuxSetup() {
 	echo "${GREEN}Done.${NC}"
 	echo ""
 
-	# Install oh-my-zsh
+	# Install oh-my-zsh`
 	echo "${GREEN}Installing Oh My Zsh...${NC}"
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	echo "${GREEN}Done.${NC}"
