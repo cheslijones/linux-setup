@@ -61,8 +61,8 @@ case $userResponse in
 		zshSetup
 		# Modify the ~/.zshrc
 		echo "${GREEN}Modifying ~/.zshrc....${NC}"
-		sed -i 's/robbyrussell/powerlevel9k\/powerlevel9k/g' ~/.zshrc &&
-			sed -i 's/plugins=(git)/plugins=(git virtualenv zsh-autosuggestions zsh-completions zsh-syntax-highlighting)/g' ~/.zshrc &&
+		sed -i '' 's/robbyrussell/powerlevel9k\/powerlevel9k/g' ~/.zshrc &&
+			sed -i '' 's/plugins=(git)/plugins=(git virtualenv zsh-autosuggestions zsh-completions zsh-syntax-highlighting)/g' ~/.zshrc &&
 			echo 'POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)' >>~/.zshrc &&
 			echo 'POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv root_indicator background_jobs history time)' >>~/.zshrc &&
 			echo 'POWERLEVEL9K_PROMPT_ON_NEWLINE=true' >>~/.zshrc &&
