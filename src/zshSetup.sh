@@ -81,7 +81,7 @@ case $userResponse in
 			echo 'alias dev="kubectl config use-context $(basename $PWD) && source api-v2/.venv-v2/bin/activate"' >> ~/.zshrc &&
 			echo 'alias ska="dev && skaffold dev --port-forward -n dev"' >> ~/.zshrc && 
 			echo 'export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"' >> ~/.zshrc && 
-			echo 'export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"' >> ~/.zshrc :&& 
+			echo 'export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"' >> ~/.zshrc && 
 			echo 'export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"' >> ~/.zshrc &&
 			echo 'export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"' >> ~/.zshrc
 
